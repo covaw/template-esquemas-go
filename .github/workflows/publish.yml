@@ -62,6 +62,6 @@ jobs:
           source_file: 'test2.md'
           destination_repo: 'another_repo/release-test'
           destination_folder: 'test-dir' # optional
-          user_email: 'example@email.com'# your email
+          user_email: 'example@email.com'
           user_name: 'dmnemec'           # your login
           commit_message: 'A custom message for the commit'
