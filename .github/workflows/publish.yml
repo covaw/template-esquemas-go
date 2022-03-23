@@ -42,20 +42,16 @@ jobs:
         run: ls avro/
       - name: ls avro/struct
         run: ls avro/struct/
-      # - name: Generate go struct3
-      #   run: ls /avro
-      # - name: Restore dependencies
-      #   run: dotnet restore
-      #   working-directory: ${{env.DIRECORY_SRC}}
-      # - name: Build
-      #   run: dotnet build --configuration Release --no-restore
-      #   working-directory: ${{env.DIRECORY_SRC}}
-      # - name: Pack
-      #   run: dotnet pack -p:PackageVersion=1.0.$GITHUB_RUN_NUMBER --no-build -c Release -o ${{ env.OUTPUT_DIRECTORY }}
-      #   working-directory: ${{env.DIRECORY_SRC}}
-      # - name: Add NuGet sources
-      #   run: |
-      #     dotnet nuget add source https://nuget.pkg.github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/index.json --name github
-      # - name: Nuget Push on Github
-      #   run: dotnet nuget push --source github --api-key ${{ secrets.ARQUITECTURA_DEPLOY }} --skip-duplicate ${{ env.DIRECORY_SRC }}/${{ env.OUTPUT_DIRECTORY }}*.nupkg
-      #   working-directory: ${{ env.DIRECTORY_SRC }}
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        uses: covaw/esquemas@main
+        # env:
+        #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: output/
+          destination-github-username: 'covaw'
+          destination-repository-name: 'covaw/esquemas'
+          user-email: carles3@pina.cat
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+          target-branch: main
