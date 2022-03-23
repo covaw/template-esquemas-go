@@ -11,7 +11,8 @@ env:
   GITHUB_REPOSITORY_OWNER: architecture-it
   BUILD_CONFIGURATION: 'Release'
   DIRECORY_SRC: 'lang/csharp/Andreani/wilgab/Events' # working directory remplace {appname}
-  FILE_IDL: 'idl/Pedido.avdl' # archivo avdl remplace {Example}
+  IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
+  EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
 jobs:
   gen-nuget:
@@ -19,10 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - name: Setup .NET Core
-      #   uses: actions/setup-dotnet@v1
-      #   with:
-      #     dotnet-version: 5.x
       - uses: actions/setup-java@v1
         with:
           java-version: '11' # The JDK version to make available on the path.
@@ -33,27 +30,18 @@ jobs:
           version: 1.17.7
       - name: Get Avro Tools
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
-      - name: Setting golang
-        run: go version
-      - name: Generate Protocol
-        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL}} avro/
-      - name: Generate folder struct
-        run: mkdir avro/struct
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
-      - name: ls gopath2
-        run: ls /home/runner/go
-      - name: ls gopath2
-        run: ls /home/runner/go/bin
+      - name: Generate Protocol
+        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL+env.EVENT}}.avdl avro/
+      - name: Generate folder output
+        run: mkdir avro/struct
       - name: Generate go struct
-        # run: gogen-avro avro/struct/ avro/Pedidos.avsc
-        run: /home/runner/go/bin/gogen-avro avro/struct avro/Pedido.avsc
-      - name: Generate go struct2
-        run: ls 
-      - name: Generate go struct3
-        run: ls avro
-      - name: Generate go struct4
-        run: ls avro/struct
+        run: /home/runner/go/bin/gogen-avro avro/struct avro/${{env.EVENT}}.avsc
+      - name: ls avro
+        run: ls avro/
+      - name: ls avro/struct
+        run: ls avro/struct/
       # - name: Generate go struct3
       #   run: ls /avro
       # - name: Restore dependencies
