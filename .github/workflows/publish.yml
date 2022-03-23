@@ -28,16 +28,20 @@ jobs:
           java-version: '11' # The JDK version to make available on the path.
           java-package: jre # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
+      - uses: actions/setup-go@v2
+        with:
+          version: 1.17.7
       - name: Get Avro Tools
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
-        run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
+        run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+        # run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
       # - name: Get Avro Gen
       #   run: dotnet tool install Apache.Avro.Tools --version $AVRO_VERSION --global
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL}}
-      - name: Generate go struct
-        run: gogen-avro ..\avro\struct\ ..\avro\Pedido.avsc
+      # - name: Generate go struct
+      #   run: gogen-avro avro\struct\ avro\Pedido.avsc
       # - name: Restore dependencies
       #   run: dotnet restore
       #   working-directory: ${{env.DIRECORY_SRC}}
