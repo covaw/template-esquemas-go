@@ -54,3 +54,14 @@ jobs:
       #     user-email: carles3@pina.cat
       #     commit-message: See ORIGIN_COMMIT from $GITHUB_REF
       #     target-branch: main
+      - name: Push to another repo
+        uses: covaw/esquemas@main
+        # env:
+        #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
+        with:
+          source_file: 'test2.md'
+          destination_repo: 'another_repo/release-test'
+          destination_folder: 'test-dir' # optional
+          user_email: 'example@email.com'# your email
+          user_name: 'dmnemec'           # your login
+          commit_message: 'A custom message for the commit'
