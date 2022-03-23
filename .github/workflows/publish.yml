@@ -33,7 +33,7 @@ jobs:
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
       - name: Generate Protocol
-        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL}}:${{env.EVENT}}.avdl avro/
+        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.IDL_FOLDER}}:${{env.EVENT}}.avdl avro/
       - name: Generate folder output
         run: mkdir avro/struct
       - name: Generate go struct
