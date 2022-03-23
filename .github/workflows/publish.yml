@@ -44,9 +44,9 @@ jobs:
       - name: ls gopath
         run: echo $GOPATH
       - name: ls gopath append
-        run: export GOPATH=$GOPATH:bin/gogen-avro
+        run: export GOGENPATH=/home/runner/gogent-avro
       - name: ls gopath2
-        run: echo $GOPATH
+        run: go env
       - name: Generate go struct
         run: gogen-avro /avro/struct/ /avro/Pedidos.avsc
       - name: Generate go struct2
