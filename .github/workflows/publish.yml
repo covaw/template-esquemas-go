@@ -49,9 +49,9 @@ jobs:
       - name: Generate go struct2
         run: ls 
       - name: Generate go struct3
-        run: ls /avro/
+        run: ls avro
       - name: Generate go struct4
-        run: ls /avro/struct/
+        run: ls avro/struct
       # - name: Generate go struct3
       #   run: ls /avro
       # - name: Restore dependencies
