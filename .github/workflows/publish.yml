@@ -48,7 +48,7 @@ jobs:
       - name: ls gopath3
         run: ls /home/runner/go/src/github.com
       - name: Generate go struct
-        run: /home/runner/go/bin/gogen-avro /avro/struct/ /avro/Pedidos.avsc
+        run: /home/runner/go/bin/gogen-avro avro/struct/ avro/Pedidos.avsc
       - name: Generate go struct2
         run: ls 
       - name: Generate go struct3
