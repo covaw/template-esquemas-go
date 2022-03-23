@@ -72,6 +72,3 @@ jobs:
       # - name: Nuget Push on Github
       #   run: dotnet nuget push --source github --api-key ${{ secrets.ARQUITECTURA_DEPLOY }} --skip-duplicate ${{ env.DIRECORY_SRC }}/${{ env.OUTPUT_DIRECTORY }}*.nupkg
       #   working-directory: ${{ env.DIRECTORY_SRC }}
-
-
-
