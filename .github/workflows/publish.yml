@@ -60,8 +60,8 @@ jobs:
         #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
         with:
           source_file: 'test2.md'
-          destination_repo: 'another_repo/release-test'
+          destination_repo: 'covaw/esquemas/release-tes'
           destination_folder: 'test-dir' # optional
-          user_email: 'example@email.com'
-          user_name: 'dmnemec'           # your login
+          user_email:  wcova@andreani.com'
+          user_name: 'covaw'           # your login
           commit_message: 'A custom message for the commit'
