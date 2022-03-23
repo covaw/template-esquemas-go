@@ -18,6 +18,6 @@ protocol EventsProtocol {
     record Structure {
         string Token;
         string Tenant;
-        union { null, array<Andreani.RHpro.Events.Common.StructureData> } Data=null;
+        union { null, array<Andreani.RHpro.Events.Common.StructureData> } Data=null; 
     }  
 }
