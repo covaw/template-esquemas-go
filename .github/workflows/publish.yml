@@ -35,18 +35,17 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Setting golang
         run: go version
-      - name: Get gogen-avro Tools
-        run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+      # - name: Get gogen-avro Tools
+      #   run: go get github.com/actgardner/gogen-avro/v10/cmd/...
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL}} avro/
       - name: Generate folder struct
         run: mkdir avro/struct
       - name: ls gopath
         run: ls /home/runner/go/bin/
-      - name: enviroment gogen
-        run: export PATH=/home/runner/go/bin/gogen-avro
       - name: Generate go struct
-        run: gogen-avro avro/struct/ avro/Pedidos.avsc
+        # run: gogen-avro avro/struct/ avro/Pedidos.avsc
+        run: $GOPATH/bin/gogen-avro avro/pedido.avsc
       - name: Generate go struct2
         run: ls 
       - name: Generate go struct3
