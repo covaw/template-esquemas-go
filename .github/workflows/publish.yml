@@ -39,8 +39,6 @@ jobs:
         run: go version
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
-      - name: Get gogen-avro test
-        run: ls /home/runner/go/bin/gogen-avro 
         # run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
       # - name: Get Avro Gen
       #   run: dotnet tool install Apache.Avro.Tools --version $AVRO_VERSION --global
@@ -50,8 +48,12 @@ jobs:
         run: /home/runner/go/bin/gogen-avro struct/ avro/Pedido.avsc
       - name: Generate go struct2
         run: ls
-      - name: Generate go struct2
-        run: ls /home/runner/go/bin/gogen-avro
+      - name: Generate go struct3
+        run: ls avro/struct
+      - name: Generate go struct4
+        run: /home/runner/go/bin/gogen-avro avro/struct avro/Pedido.avsc
+      - name: Generate go struct3
+        run: ls avro/struct
       # - name: Restore dependencies
       #   run: dotnet restore
       #   working-directory: ${{env.DIRECORY_SRC}}
