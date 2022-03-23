@@ -55,6 +55,7 @@ jobs:
       #     commit-message: See ORIGIN_COMMIT from $GITHUB_REF
       #     target-branch: main
       - name: Push to another repo
+        id: push_directory
         uses: covaw/esquemas@main
         # env:
         #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }} 
