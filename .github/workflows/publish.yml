@@ -34,10 +34,11 @@ jobs:
         run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
       # - name: Get Avro Gen
       #   run: dotnet tool install Apache.Avro.Tools --version $AVRO_VERSION --global
-      # - name: Generate Protocol
-      #   run: java -jar avro-tools-$AVRO_VERSION.jar idl $FILE_IDL Schema.avpr 
-      # - name: AvroGen
-      #   run: avrogen -p Schema.avpr lang/csharp/
+      - name: Generate Protocol
+        run: java -jar avro-tools-$AVRO_VERSION.jar idl $FILE_IDL Schema.avpr 
+        java -jar avro-tools-1.10.2.jar idl2schemata .\idl\Pedido.avdl
+      - name: Generate go struct
+        run: gogen-avro ..\avro\struct\ ..\avro\Pedido.avsc
       # - name: Restore dependencies
       #   run: dotnet restore
       #   working-directory: ${{env.DIRECORY_SRC}}
