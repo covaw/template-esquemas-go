@@ -56,7 +56,7 @@ jobs:
       #     target-branch: main
       - name: Pushes to another repository
         id: push_directory
-        uses: covaw/esquemas@main
+        uses: covaw/template-esquemas-go@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
