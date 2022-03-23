@@ -40,11 +40,13 @@ jobs:
       - name: Generate folder struct
         run: mkdir avro/struct
       - name: ls gopath
-        run: ls /home/runner/go/bin/
+        run: ls /home/runner/go
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
       - name: ls gopath2
-        run: ls /home/runner/go/bin/
+        run: ls /home/runner/go
+      - name: ls gopath2
+        run: ls /home/runner/go/bin
       - name: Generate go struct
         # run: gogen-avro avro/struct/ avro/Pedidos.avsc
         run: $GOPATH/bin/gogen-avro avro/pedido.avsc
