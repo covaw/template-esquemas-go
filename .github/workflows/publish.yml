@@ -49,7 +49,7 @@ jobs:
       - name: Generate go struct
         run: /home/runner/go/bin/gogen-avro struct/ avro/Pedido.avsc
       - name: Generate go struct2
-        run: /home/runner/go/bin/gogen-avro/gogen-avro struct/ avro/Pedido.avsc
+        run: ls struct/
       # - name: Restore dependencies
       #   run: dotnet restore
       #   working-directory: ${{env.DIRECORY_SRC}}
