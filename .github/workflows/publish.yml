@@ -44,7 +44,9 @@ jobs:
       - name: ls gopath
         run: ls /home/runner/go/
       - name: ls gopath2
-        run: go env
+        run: ls /home/runner/go/bin
+      - name: ls gopath3
+        run: ls /home/runner/go/src
       - name: Generate go struct
         run: gogen-avro /avro/struct/ /avro/Pedidos.avsc
       - name: Generate go struct2
