@@ -40,7 +40,7 @@ jobs:
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
       - name: Get gogen-avro test
-        run: ls /home/runner/go/bin/
+        run: ls /home/runner/go/bin/gogen-avro
         # run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
       # - name: Get Avro Gen
       #   run: dotnet tool install Apache.Avro.Tools --version $AVRO_VERSION --global
