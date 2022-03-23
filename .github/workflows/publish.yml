@@ -42,15 +42,15 @@ jobs:
         run: ls avro/
       - name: ls avro/struct
         run: ls avro/struct/
-      - name: Pushes to another repository
-        id: push_directory
-        uses: covaw/esquemas@main
-        # env:
-        #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: output/
-          destination-github-username: 'covaw'
-          destination-repository-name: 'covaw/esquemas'
-          user-email: carles3@pina.cat
-          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-          target-branch: main
+      # - name: Pushes to another repository
+      #   id: push_directory
+      #   uses: covaw/esquemas@main
+      #   # env:
+      #   #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source-directory: output/
+      #     destination-github-username: 'covaw'
+      #     destination-repository-name: 'covaw/esquemas'
+      #     user-email: carles3@pina.cat
+      #     commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+      #     target-branch: main
