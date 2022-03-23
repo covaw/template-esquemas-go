@@ -35,10 +35,9 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Setting golang
         run: go version
-      - name: Setting golang
-        run: go version
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+      - name: Update path   
         # run: wget --quiet https://github.com/actgardner/gogen-avro/tree/master/v10/gogen-avro
       # - name: Get Avro Gen
       #   run: dotnet tool install Apache.Avro.Tools --version $AVRO_VERSION --global
@@ -46,6 +45,10 @@ jobs:
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.FILE_IDL}}
       - name: Generate folder struct
         run: mkdir avro/struct
+      - name: ls gopath
+        run: echo $GOPATH
+      - name: ls gopath append
+        run: echo $GOPATH:bin/gogen-avro
       - name: Generate go struct
         run: /home/runner/go/bin/gogen-avro avro/struct/ avro/Pedido.avsc
       - name: Generate go struct2
