@@ -42,11 +42,11 @@ jobs:
       - name: Generate folder struct
         run: mkdir avro/struct
       - name: ls gopath
-        run: echo $GOPATH
+        run: echo "$GOPATH"
       - name: ls gopath append
-        run: echo $GOPATH:bin/gogen-avro
+        run: echo $GOPATH=$GOPATH:bin/gogen-avro
       - name: Generate go struct
-        run: /home/runner/go/bin/gogen-avro /avro/struct/ /avro/Pedidos.avsc
+        run: gogen-avro /avro/struct/ /avro/Pedidos.avsc
       - name: Generate go struct2
         run: ls 
       - name: Generate go struct3
