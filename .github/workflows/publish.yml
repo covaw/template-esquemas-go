@@ -61,8 +61,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: output/
-          destination-github-username: 'cpina'
-          destination-repository-name: 'push-to-another-repository-output'
-          user-email: carles3@pina.cat
+          destination-github-username: 'covaw'
+          destination-repository-name: 'esquemas'
+          user-email: wcova@andreani.com
           commit-message: See ORIGIN_COMMIT from $GITHUB_REF
           target-branch: main
