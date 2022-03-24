@@ -43,10 +43,10 @@ jobs:
       - name: ls avro/struct
         run: ls avro/struct/
       - name: Checkout Nuget go
-        uses: actions/checkout@main
+        uses: actions/checkout@master
         with: 
           repository: covaw/template-nuget-go
-          token: ${{ secrets.ACTIONS_TOKEN }}
+          # token: ${{ secrets.ACTIONS_TOKEN }}
           path: ./nuget
       - name: ls current
         run: ls
