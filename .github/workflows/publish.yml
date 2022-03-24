@@ -42,27 +42,13 @@ jobs:
         run: ls avro/
       - name: ls avro/struct
         run: ls avro/struct/
-      # - name: Pushes to another repository
-      #   id: push_directory
-      #   uses: covaw/esquemas@main
-      #   # env:
-      #   #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-      #   with:
-      #     source-directory: output/
-      #     destination-github-username: 'covaw'
-      #     destination-repository-name: 'covaw/esquemas'
-      #     user-email: carles3@pina.cat
-      #     commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-      #     target-branch: main
-      - name: Pushes to another repository
-        id: push_directory
-        uses: covaw/template-esquemas-go@main
-        # env:
-        #   API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: output/
-          destination-github-username: 'covaw'
-          destination-repository-name: 'esquemas'
-          user-email: wcova@andreani.com
-          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
-          target-branch: main
+      - name: Checkout Nuget go
+        uses: actions/checkout@master
+        with: 
+          repository: covaw/template-nuget-go
+          # token: ${{ secrets.ACTIONS_TOKEN }}
+          path: ./nuget
+      - name: ls current
+        run: ls
+      - name: ls nuget
+        run: ls nuget/
