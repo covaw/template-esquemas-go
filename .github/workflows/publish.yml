@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@main
         with: 
           repository: covaw/template-nuget-go
-          # token: ${{ secrets.ACTIONS_TOKEN }}
+          token: ${{ secrets.ACTIONS_TOKEN }}
           path: ./nuget
       - name: ls current
         run: ls
