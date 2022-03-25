@@ -76,10 +76,10 @@ jobs:
           FILE=avro/struct/$EVENT
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/$EVENT ./nuget
+            cp -R avro/struct/$EVENT ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/$EVENT
+            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/
           fi
       - name: ls nuget
         run: ls ./nuget/
