@@ -9,11 +9,8 @@ env:
   AVRO_VERSION: 1.11.0
   AVRO_MIRROR: https://apache.zero.com.ar/avro
   GITHUB_REPOSITORY_OWNER: architecture-it
-  BUILD_CONFIGURATION: 'Release'
-  DIRECORY_SRC: 'lang/csharp/Andreani/wilgab/Events' # working directory remplace {appname}
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
-  OUTPUT_DIRECTORY: 'bin/Release/'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -82,7 +79,7 @@ jobs:
             cp -R avro/struct/$EVENT ./nuget
           else 
             echo "Creating $FILE"
-            touch ./nuget/$EVENT
+            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/$EVENT
           fi
       - name: ls nuget
         run: ls ./nuget/
