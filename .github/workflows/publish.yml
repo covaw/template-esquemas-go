@@ -63,6 +63,7 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           repository: covaw/template-nuget-go
+          ref: ${{ github.head_ref }}
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
           token: ${{ env.GITHUB_TOKEN }}
@@ -97,7 +98,7 @@ jobs:
       - name: Push Project B
         run: |
           cd ./nuget
-          git config remote.origin.url https://github.com/covaw/template-nuget-go.git
+          
           git config --global user.name covaw
           git config --global user.email covaw@github.com
           
