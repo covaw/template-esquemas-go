@@ -34,14 +34,14 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
-      - name: ls
-        run: ls
-      - name: setting source
-        run: cd origin/
-      - name: ls
-        run: ls 
-      - name: ls
-        run: ls origin/
+      # - name: ls
+      #   run: ls
+      # - name: setting source
+      #   run: cd origin/
+      # - name: ls
+      #   run: ls 
+      # - name: ls
+      #   run: ls origin/
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
@@ -86,14 +86,15 @@ jobs:
           fi
       - name: ls nuget
         run: ls ./nuget/
-      - name: GIT STATUS
+      # - name: GIT STATUS
+      #   run: |
+      #     cd ./nuget
+          # git status
+      - name: Push Project B
         run: |
           cd ./nuget
-          git status
-      # - name: Push Project B
-      #   run: |
-      #     git config user.name covaw
-      #     git config user.email wcova@andreani.com
-      #     git add .
-      #     git commit -am "File Replicated from Project A"
-      #     git push
+          git config user.name covaw
+          git config user.email wcova@andreani.com
+          git add .
+          git commit -am "File Replicated from Project A"
+          git push
