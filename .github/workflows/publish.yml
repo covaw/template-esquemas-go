@@ -37,7 +37,7 @@ jobs:
       - name: ls
         run: ls
       - name: setting source
-        run: cd ./origin
+        run: cd origin/
       - name: ls
         run: ls
       - name: Generate Protocol
