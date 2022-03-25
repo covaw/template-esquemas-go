@@ -14,7 +14,6 @@ env:
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
-  TOKEN: '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'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -64,13 +63,7 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           repository: covaw/template-nuget-go
-          # ref: ${{ github.head_ref }}
-          # token: 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
-          # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
           token: ${{ env.GITHUB_TOKEN }}
-          # token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          # key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # known_hosts: ${{ secrets.KNOWN_HOSTs }}
           path: ./nuget
       - name: ls current
         run: ls
@@ -96,16 +89,16 @@ jobs:
         run: |
           cd ./nuget
           ls
-      - name: Push Project B
-        run: |
-          cd ./nuget
+      # - name: Push Project B
+      #   run: |
+      #     cd ./nuget
           
-          git config --global user.name covaw
-          git config --global user.email covaw@github.com
+      #     git config --global user.name covaw
+      #     git config --global user.email covaw@github.com
           
-          git add .
-          git commit -m "Add Schema ${{env.EVENT}}"
-      - name: Pushes to another repository
+      #     git add .
+      #     git commit -m "Add Schema ${{env.EVENT}}"
+      - name: Pushes to Go Nuget
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -114,12 +107,6 @@ jobs:
           source-directory: ./nuget/
           destination-github-username: 'covaw'
           destination-repository-name: 'template-nuget-go'
-          user-email: carles3@pina.cat
-          commit-message: See ORIGIN_COMMIt
+          user-email: git-actions@github.com
+          commit-message: add schema ${{ env.EVENT }}
           target-branch: main
-# git push https://covaw:${{ github.token }}@github.com/covaw/template-nuget-go
-# "https://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@github.com/covaw/template-nuget-go.git"
-# git config --global hub.protocol https
-# git config user.name covaw
-# git config user.email github-actions@github.com
-# git remote set-url origin https://<username>@github.com/<username>/<repo>.git
