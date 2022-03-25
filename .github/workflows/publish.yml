@@ -34,6 +34,9 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+      - name: setting source
+        run: |
+          cd ./origin
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
@@ -77,7 +80,7 @@ jobs:
             touch ./nuget/${{steps.string.outputs.lowercase}}
           fi
       - name: ls nuget
-        run: ls nuget/
+        run: ls ./nuget/
       - name: GIT STATUS
         run: |
           cd ./nuget
