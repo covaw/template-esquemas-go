@@ -12,7 +12,7 @@ env:
   BUILD_CONFIGURATION: 'Release'
   DIRECORY_SRC: 'lang/csharp/Andreani/wilgab/Events' # working directory remplace {appname}
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
-  EVENT: 'pedido'
+  EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
 jobs:
   gen-nuget:
@@ -57,11 +57,11 @@ jobs:
         run: ls nuget/
       - name: Copy/Create file
         run: |
-          FILE=avro/struct/${{env.EVENT}}
+          FILE=avro/struct/${{lowercase(env.EVENT)}}
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/${{env.EVENT}} ./nuget
+            cp -R avro/struct/${{lowercase(env.EVENT)}} ./nuget
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{env.EVENT}}
+            touch ./nuget/${{lowercase(env.EVENT)}}
           fi
