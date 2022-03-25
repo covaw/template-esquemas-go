@@ -69,3 +69,5 @@ jobs:
             echo "Creating $FILE"
             touch ./nuget/${{steps.string.outputs.lowercase}}
           fi
+      - name: ls nuget
+        run: ls nuget/
