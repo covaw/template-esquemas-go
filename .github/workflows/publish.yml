@@ -97,8 +97,9 @@ jobs:
       - name: Push Project B
         run: |
           cd ./nuget
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+           git config remote.origin.url https://github.com/covaw/template-nuget-go.git
+          git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
+          git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
