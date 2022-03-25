@@ -79,7 +79,7 @@ jobs:
             cp -R avro/struct/$EVENT ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/
+            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.EVENT }}/$EVENT
           fi
       - name: ls nuget
         run: ls ./nuget/
