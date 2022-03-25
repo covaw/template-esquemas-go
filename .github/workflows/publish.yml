@@ -89,11 +89,12 @@ jobs:
           fi
       - name: Copy/Create file
         run: |
+          cd ..
           EVENT=${{steps.string.outputs.lowercase}}
           FILE=avro/struct/$EVENT.go
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/$EVENT ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT
+            cp -R avro/struct/$EVENT.go ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT
           else 
             echo "Creating $FILE"
             touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT/$EVENT.go
