@@ -77,10 +77,11 @@ jobs:
       - name: ls nuget
         run: ls nuget/
       - name: GIT STATUS
-        run: git status
-      - name: Push Project B
         run: |
           cd ./nuget
+          git status
+      - name: Push Project B
+        run: |
           git config user.name covaw
           git config user.email wcova@andreani.com
           git add .
