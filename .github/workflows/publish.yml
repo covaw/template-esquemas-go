@@ -73,15 +73,15 @@ jobs:
             echo "Creating folder owner"
             mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
           else
-            echo "folder exists"
+            echo "folder owner exists"
           fi
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
 
-          if [ -f ${{ env.EVENT }} }} ]; then
+          if [ -f ${{steps.string.outputs.lowercase}} ]; then
             echo "Creating folder schema"
-            mkdir ${{ env.EVENT }}
+            mkdir ${{steps.string.outputs.lowercase}}
           else
-            echo "folder ${{ env.EVENT }} exists"
+            echo "folder ${{steps.string.outputs.lowercase}} exists"
           fi
       - name: Copy/Create file
         run: |
