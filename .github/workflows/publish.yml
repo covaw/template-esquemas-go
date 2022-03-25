@@ -97,7 +97,7 @@ jobs:
       - name: Push Project B
         run: |
           cd ./nuget
-          #  git config remote.origin.url https://github.com/covaw/template-nuget-go.git
+          git config remote.origin.url https://github.com/covaw/template-nuget-go.git
           git config --global user.name covaw
           git config --global user.email covaw@github.com
           
@@ -108,3 +108,4 @@ jobs:
 # git config --global hub.protocol https
 # git config user.name covaw
 # git config user.email github-actions@github.com
+# git remote set-url origin https://<username>@github.com/<username>/<repo>.git
