@@ -53,7 +53,7 @@ jobs:
       - name: ls avro/struct
         run: ls avro/struct/
       - name: Checkout Nuget go
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
