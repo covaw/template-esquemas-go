@@ -47,10 +47,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          persist-credentials: true # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           repository: covaw/template-nuget-go
-          # token: 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
+          token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
           token: ${{ env.GITHUB_TOKEN }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -80,7 +80,5 @@ jobs:
         run: |
           cd ./nuget
           git add .
-          git config user.name covaw
-          git config user.email wcova@andreani.com
           git commit -am "File Replicated from Project A"
           git push
