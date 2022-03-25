@@ -67,7 +67,7 @@ jobs:
           # ref: ${{ github.head_ref }}
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
-          github_token: ${{ env.GITHUB_TOKEN }}
+          token: ${{ env.GITHUB_TOKEN }}
           # token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
@@ -104,12 +104,19 @@ jobs:
           git config --global user.email covaw@github.com
           
           git add .
-          git commit -am "Add Schema ${{env.EVENT}}"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+          git commit -m "Add Schema ${{env.EVENT}}"
+      - name: Pushes to another repository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ github.token }}
         with:
-          github_token: ${{ github.token }}
-          branch: ${{ github.ref }}
+          source-directory: ./nuget/
+          destination-github-username: 'covaw'
+          destination-repository-name: 'template-nuget-go'
+          user-email: carles3@pina.cat
+          commit-message: See ORIGIN_COMMIt
+          target-branch: main
 # git push https://covaw:${{ github.token }}@github.com/covaw/template-nuget-go
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
