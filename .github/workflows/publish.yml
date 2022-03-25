@@ -14,6 +14,7 @@ env:
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
+permissions: read-all|write-all
 jobs:
   gen-nuget:
     name: "Generate Libs"
