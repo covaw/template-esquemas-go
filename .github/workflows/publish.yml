@@ -56,7 +56,7 @@ jobs:
       - name: ls nuget
         run: ls nuget/
       - name: Copy/Create file
-          run: |
+          run: 
             FILE=avro/struct/${{env.EVENT}}
             if [ -f "$FILE" ]; then
               echo "Copying $FILE"
