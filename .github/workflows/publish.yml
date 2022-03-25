@@ -10,7 +10,7 @@ env:
   AVRO_MIRROR: https://apache.zero.com.ar/avro
   GITHUB_REPOSITORY_OWNER: covaw
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
-  EVENT: 'Person'
+  EVENT: 'Pedido'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -34,8 +34,8 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
-      # - name: Generate Protocol
-      #   run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
+      - name: Generate Protocol
+        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
         run: mkdir avro/struct
       - name: Generate go struct
