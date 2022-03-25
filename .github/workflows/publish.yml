@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@master
         with: 
           repository: covaw/template-nuget-go
-          # token: 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
+          token: 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
           # token: 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
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
@@ -77,6 +77,5 @@ jobs:
           git add .
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git config user.password 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
           git commit -am "File Replicated from Project A"
-          git push origin master --force
+          git push
