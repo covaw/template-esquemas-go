@@ -62,8 +62,13 @@ jobs:
           repository: covaw/template-nuget-go
           token: ${{ env.GITHUB_TOKEN }}
           path: ./nuget
-      - name: ls current
-        run: ls
+      - name: Create folder
+        run: |
+          cd ./nuget
+          mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+          cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
+          mkdir ${{ env.EVENT }}
+          ls
       - name: ls nuget
         run: ls nuget/
       - id: string
