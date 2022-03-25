@@ -44,11 +44,13 @@ jobs:
         run: ls avro/struct/
       - name: Checkout Nuget go
         uses: actions/checkout@master
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with: 
           repository: covaw/template-nuget-go
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
-          token: ${{ github.token }}
+          # token: ${{ github.token }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
           path: ./nuget
