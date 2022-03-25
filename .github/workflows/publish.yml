@@ -55,13 +55,17 @@ jobs:
         run: ls
       - name: ls nuget
         run: ls nuget/
+      - id: string
+        uses: ASzc/change-string-case-action@v2
+        with:
+          string: ${{env.EVENT}}
       - name: Copy/Create file
         run: |
-          FILE=avro/struct/${{lowercase(env.EVENT)}}
+          FILE=avro/struct/${{steps.string.outputs.lowercase}}
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/${{lowercase(env.EVENT)}} ./nuget
+            cp -R avro/struct/${{steps.string.outputs.lowercase}} ./nuget
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{lowercase(env.EVENT)}}
+            touch ./nuget/${{steps.string.outputs.lowercase}}
           fi
