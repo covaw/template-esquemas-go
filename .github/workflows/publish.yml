@@ -8,7 +8,7 @@ on:
 env:
   AVRO_VERSION: 1.11.0
   AVRO_MIRROR: https://apache.zero.com.ar/avro
-  GITHUB_REPOSITORY_OWNER: architecture-it
+  GITHUB_REPOSITORY_OWNER: covaw
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
 jobs:
@@ -69,7 +69,8 @@ jobs:
       - name: Create folder
         run: |
           cd ./nuget
-          if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
+
+          if [ -f "${{ env.GITHUB_REPOSITORY_OWNER }}" ]; then
             echo "Creating folder owner"
             mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
           else
@@ -80,7 +81,7 @@ jobs:
 
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
 
-          if [ -f ${{steps.string.outputs.lowercase}} ]; then
+          if [ -f "${{steps.string.outputs.lowercase}}" ]; then
             echo "Creating folder schema"
             mkdir ${{steps.string.outputs.lowercase}}
           else
