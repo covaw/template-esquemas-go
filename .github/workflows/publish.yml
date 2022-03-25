@@ -14,6 +14,7 @@ env:
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
+  TOKEN: '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'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -104,7 +105,7 @@ jobs:
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          git push https://covaw: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@github.com/covaw/template-nuget-go
+          git push https://covaw:${{env.TOKEN}}@github.com/covaw/template-nuget-go
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
 # git config user.name covaw
