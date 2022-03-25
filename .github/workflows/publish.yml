@@ -94,7 +94,7 @@ jobs:
       - name: Push Project B
         run: |
           cd ./nuget
-          git config user.name covaw
+          git config user.name William Cova
           git config user.email wcova@andreani.com
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
