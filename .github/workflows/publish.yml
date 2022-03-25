@@ -46,7 +46,8 @@ jobs:
         uses: actions/checkout@master
         with: 
           repository: covaw/template-nuget-go
-          key: ${{ secrets.ARQUITECTURA_DEPLOY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTs }}
           path: ./nuget
       - name: ls current
         run: ls
