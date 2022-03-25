@@ -75,13 +75,14 @@ jobs:
           string: ${{env.EVENT}}
       - name: Copy/Create file
         run: |
-          FILE=avro/struct/${{steps.string.outputs.lowercase}}
+          EVENT=${{steps.string.outputs.lowercase}}.go
+          FILE=avro/struct/$EVENT
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/${{steps.string.outputs.lowercase}} ./nuget
+            cp -R avro/struct/$EVENT ./nuget
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{steps.string.outputs.lowercase}}
+            touch ./nuget/$EVENT
           fi
       - name: ls nuget
         run: ls ./nuget/
