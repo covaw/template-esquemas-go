@@ -96,5 +96,5 @@ jobs:
           git config user.name covaw
           git config user.email wcova@andreani.com
           git add .
-          git commit -am "File Replicated from Project A"
+          git commit -am "Add Schema ${{env.EVENT}}"
           git push
