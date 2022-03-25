@@ -10,7 +10,7 @@ env:
   AVRO_MIRROR: https://apache.zero.com.ar/avro
   GITHUB_REPOSITORY_OWNER: covaw
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
-  EVENT: 'Pedido'
+  EVENT: 'Person'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -34,23 +34,15 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
-      # - name: ls
-      #   run: ls
-      # - name: setting source
-      #   run: cd origin/
-      # - name: ls
-      #   run: ls 
-      # - name: ls
-      #   run: ls origin/
-      - name: Generate Protocol
-        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
+      # - name: Generate Protocol
+      #   run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
         run: mkdir avro/struct
       - name: Generate go struct
         run: /home/runner/go/bin/gogen-avro avro/struct avro/${{env.EVENT}}.avsc
-      - name: ls avro
+      - name: Show folder AVRO
         run: ls avro/
-      - name: ls avro/struct
+      - name: Show folder Schemas
         run: ls avro/struct/
       - name: Checkout Nuget go
         uses: actions/checkout@v2
@@ -95,10 +87,10 @@ jobs:
           FILE=avro/struct/$EVENT.go
           if [ -f "$FILE" ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/$EVENT.go ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT
+            cp -R avro/struct/*.go ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT/$EVENT.go
+            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT/*.go
           fi
       - name: ls nuget
         run: ls ./nuget/
@@ -106,15 +98,6 @@ jobs:
         run: |
           cd ./nuget
           ls
-      # - name: Push Project B
-      #   run: |
-      #     cd ./nuget
-          
-      #     git config --global user.name covaw
-      #     git config --global user.email covaw@github.com
-          
-      #     git add .
-      #     git commit -m "Add Schema ${{env.EVENT}}"
       - name: Pushes to Go Nuget
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main

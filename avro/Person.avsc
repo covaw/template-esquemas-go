@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "Person",
+  "namespace": "Demo.Kafka.Event",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "lastname",
+      "type": "string"
+    },
+    {
+      "name": "edad",
+      "default": null,
+      "type": [
+        "null",
+        "int"
+      ]
+    },
+    {
+      "name": "dni",
+      "type": "int"
+    }
+  ]
+}
