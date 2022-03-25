@@ -75,6 +75,9 @@ jobs:
           else
             echo "folder owner exists"
           fi
+          
+          ls
+
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
 
           if [ -f ${{steps.string.outputs.lowercase}} ]; then
