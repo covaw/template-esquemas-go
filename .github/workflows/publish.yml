@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with: 
+          path: ./origin
       - uses: actions/setup-java@v1
         with:
           java-version: '11' # The JDK version to make available on the path.
@@ -80,10 +82,10 @@ jobs:
         run: |
           cd ./nuget
           git status
-      - name: Push Project B
-        run: |
-          git config user.name covaw
-          git config user.email wcova@andreani.com
-          git add .
-          git commit -am "File Replicated from Project A"
-          git push
+      # - name: Push Project B
+      #   run: |
+      #     git config user.name covaw
+      #     git config user.email wcova@andreani.com
+      #     git add .
+      #     git commit -am "File Replicated from Project A"
+      #     git push
