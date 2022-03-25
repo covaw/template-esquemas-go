@@ -65,7 +65,13 @@ jobs:
       - name: Create folder
         run: |
           cd ./nuget
-          mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+          if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
+            echo "Creating folder"
+            mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+          else
+            echo "folder exists"
+          fi
+          
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
           mkdir ${{ env.EVENT }}
           ls
