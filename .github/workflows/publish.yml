@@ -100,7 +100,7 @@ jobs:
           cd ./nuget
           
           git config --global user.name covaw
-          git config --global user.email covaw@github.com
+          git config --global user.email wcova@andreani.com
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
