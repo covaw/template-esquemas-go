@@ -14,11 +14,13 @@ env:
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
   OUTPUT_DIRECTORY: 'bin/Release/'
-permissions: write-all
 jobs:
   gen-nuget:
     name: "Generate Libs"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - uses: actions/checkout@v2
         with: 
