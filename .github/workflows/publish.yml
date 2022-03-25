@@ -95,6 +95,7 @@ jobs:
           cd ./nuget
           git config user.name covaw
           git config user.email wcova@andreani.com
+          git config user.password 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
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
           git push
