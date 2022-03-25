@@ -43,7 +43,7 @@ jobs:
       - name: ls avro/struct
         run: ls avro/struct/
       - name: Checkout Nuget go
-        uses: covaw/template-nuget-go@main
+        uses: covaw/template-nuget-go@v1
         with: 
           # repository: covaw/template-nuget-go
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
