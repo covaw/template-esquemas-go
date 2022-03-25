@@ -67,7 +67,7 @@ jobs:
           # ref: ${{ github.head_ref }}
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
-          token: ${{ env.GITHUB_TOKEN }}
+          github_token: ${{ env.GITHUB_TOKEN }}
           # token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
@@ -105,7 +105,8 @@ jobs:
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          git push https://covaw:${{ env.TOKEN }}@github.com/covaw/template-nuget-go
+          git push
+# git push https://covaw:${{ env.TOKEN }}@github.com/covaw/template-nuget-go
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
 # git config user.name covaw
