@@ -76,6 +76,8 @@ jobs:
 
           if [ -d "${{steps.string.outputs.lowercase}}" ]; then
             echo "folder ${{steps.string.outputs.lowercase}} exists"
+            rm -r ${{steps.string.outputs.lowercase}}
+            mkdir ${{steps.string.outputs.lowercase}}
           else
             echo "Creating folder schema"
             mkdir ${{steps.string.outputs.lowercase}}
