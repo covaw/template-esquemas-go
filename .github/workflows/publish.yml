@@ -109,6 +109,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ github.token }}
+          branch: ${{ github.ref }}
 # git push https://covaw:${{ github.token }}@github.com/covaw/template-nuget-go
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
