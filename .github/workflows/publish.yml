@@ -54,7 +54,7 @@ jobs:
         run: ls avro/struct/
       - name: Checkout Nuget go
         uses: actions/checkout@v2
-        env:
+        # env:
           # GITHUB_TOKEN: ${{ github.token }}
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
