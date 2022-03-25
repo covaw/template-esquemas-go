@@ -104,7 +104,7 @@ jobs:
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          # git push
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         if: ${{ !contains( github.event.pull_request.labels.*.name, 'not-deploy') }}
