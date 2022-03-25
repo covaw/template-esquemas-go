@@ -11,6 +11,7 @@ env:
   GITHUB_REPOSITORY_OWNER: covaw
   IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
   EVENT: 'Pedido'
+  REPOSITORY_NUGET: 'template-nuget-go'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -101,8 +102,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
           source-directory: ./nuget/
-          destination-github-username: 'covaw'
-          destination-repository-name: 'template-nuget-go'
+          destination-github-username: ${{ env.GITHUB_REPOSITORY_OWNER }}
+          destination-repository-name: ${{ env.REPOSITORY_NUGET }}
           user-email: git-actions@github.com
           commit-message: add schema ${{ env.EVENT }}
           target-branch: main
