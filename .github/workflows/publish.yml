@@ -46,7 +46,9 @@ jobs:
         uses: actions/checkout@master
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        with: 
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           repository: covaw/template-nuget-go
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
