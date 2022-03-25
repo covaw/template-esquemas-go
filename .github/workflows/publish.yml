@@ -87,9 +87,10 @@ jobs:
             echo "Creating folder schema"
             mkdir ${{steps.string.outputs.lowercase}}
           fi
+
+          ls
       - name: Copy/Create file
         run: |
-          cd ..
           EVENT=${{steps.string.outputs.lowercase}}
           FILE=avro/struct/$EVENT.go
           if [ -f "$FILE" ]; then
