@@ -34,6 +34,8 @@ jobs:
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
         run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+      - name: ls
+        run: ls
       - name: setting source
         run: |
           cd ./origin
