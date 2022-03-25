@@ -62,23 +62,23 @@ jobs:
           repository: covaw/template-nuget-go
           token: ${{ env.GITHUB_TOKEN }}
           path: ./nuget
-      - name: Create folder
-        run: |
-          cd ./nuget
-          if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
-            echo "Creating folder owner"
-            mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
-          else
-            echo "folder exists"
-          fi
-          cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
+      # - name: Create folder
+      #   run: |
+      #     cd ./nuget
+      #     if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
+      #       echo "Creating folder owner"
+      #       mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+      #     else
+      #       echo "folder exists"
+      #     fi
+      #     cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
 
-          if [ -f ${{ env.EVENT }} }} ]; then
-            echo "Creating folder schema"
-            mkdir ${{ env.EVENT }}
-          else
-            echo "folder ${{ env.EVENT }} exists"
-          fi
+      #     if [ -f ${{ env.EVENT }} }} ]; then
+      #       echo "Creating folder schema"
+      #       mkdir ${{ env.EVENT }}
+      #     else
+      #       echo "folder ${{ env.EVENT }} exists"
+      #     fi
       - name: ls nuget
         run: ls nuget/
       - id: string
@@ -87,6 +87,22 @@ jobs:
           string: ${{env.EVENT}}
       - name: Copy/Create file
         run: |
+          cd ./nuget
+          if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
+            echo "Creating folder owner"
+            mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+          else
+            echo "folder exists ${{ env.GITHUB_REPOSITORY_OWNER }}"
+          fi
+          cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
+
+          if [ -f ${{ env.EVENT }} }} ]; then
+            echo "Creating folder schema"
+            mkdir ${{steps.string.outputs.lowercase}}
+          else
+            echo "folder ${{steps.string.outputs.lowercase}} exists"
+          fi
+          cd ..
           EVENT=${{steps.string.outputs.lowercase}}.go
           FILE=avro/struct/$EVENT
           if [ -f "$FILE" ]; then
