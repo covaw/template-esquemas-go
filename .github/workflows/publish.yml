@@ -99,5 +99,5 @@ jobs:
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          git push
+          git push "https://covaw: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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
