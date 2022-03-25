@@ -79,4 +79,4 @@ jobs:
           git config user.email github-actions@github.com
           git config user.password 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
           git commit -am "File Replicated from Project A"
-          git push git push
+          git push
