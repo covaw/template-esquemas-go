@@ -47,7 +47,8 @@ jobs:
         with: 
           repository: covaw/template-nuget-go
           # token: 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
-          token: ${{ secrets.ARQUITECTURA_DEPLOY }}
+          # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
+          token: ${{ github.GITHUB_TOKEN }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
           path: ./nuget
