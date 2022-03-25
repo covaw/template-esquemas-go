@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@master
         with: 
           repository: covaw/template-nuget-go
-          token: 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
+          token: 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
           # token: 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
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
