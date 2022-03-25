@@ -99,6 +99,6 @@ jobs:
           git config --global hub.protocol https
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          git push "https://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@github.com/covaw/template-nuget-go.git"
+          git push "https://covaw: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@github.com/covaw/template-nuget-go.git"
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
