@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with: 
-          repository: covaw/template-nuget-go
+          repository: covaw/template-nuget-go@main
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
           token: ${{ env.GITHUB_TOKEN }}
