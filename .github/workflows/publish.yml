@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@master
         with: 
           repository: covaw/template-nuget-go
-          token: ${{ secrets.ARQUITECTURA_DEPLOY }}
+          key: ${{ secrets.ARQUITECTURA_DEPLOY }}
           path: ./nuget
       - name: ls current
         run: ls
