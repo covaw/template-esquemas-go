@@ -66,15 +66,19 @@ jobs:
         run: |
           cd ./nuget
           if [ -f ${{ env.GITHUB_REPOSITORY_OWNER }} ]; then
-            echo "Creating folder"
+            echo "Creating folder owner"
             mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
           else
             echo "folder exists"
           fi
-          
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
-          mkdir ${{ env.EVENT }}
-          ls
+
+          if [ -f ${{ env.EVENT }} }} ]; then
+            echo "Creating folder schema"
+            mkdir ${{ env.EVENT }}
+          else
+            echo "folder ${{ env.EVENT }} exists"
+          fi
       - name: ls nuget
         run: ls nuget/
       - id: string
