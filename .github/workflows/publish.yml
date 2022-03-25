@@ -39,9 +39,11 @@ jobs:
       - name: setting source
         run: cd origin/
       - name: ls
-        run: ls
+        run: ls 
+      - name: ls
+        run: ls origin/
       - name: Generate Protocol
-        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
+        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
         run: mkdir avro/struct
       - name: Generate go struct
