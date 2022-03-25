@@ -92,12 +92,8 @@ jobs:
             echo "Creating $FILE"
             touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT/*.go
           fi
-      - name: ls nuget
+      - name: Show folder Nuget
         run: ls ./nuget/
-      - name: GIT STATUS
-        run: |
-          cd ./nuget
-          ls
       - name: Pushes to Go Nuget
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
