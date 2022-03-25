@@ -105,7 +105,11 @@ jobs:
           
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
-          git push https://covaw:${{ github.token }}@github.com/covaw/template-nuget-go
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ github.token }}
+# git push https://covaw:${{ github.token }}@github.com/covaw/template-nuget-go
 # "https://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@github.com/covaw/template-nuget-go.git"
 # git config --global hub.protocol https
 # git config user.name covaw
