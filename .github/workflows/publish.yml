@@ -96,6 +96,7 @@ jobs:
           cd ./nuget
           git config user.name covaw
           git config user.email wcova@andreani.com
+          git config --global hub.protocol https
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
           git push
