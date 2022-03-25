@@ -71,10 +71,10 @@ jobs:
           cd ./nuget
 
           if [ -f "${{ env.GITHUB_REPOSITORY_OWNER }}" ]; then
-            echo "folder owner exists"
-          else
             echo "Creating folder owner"
             mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+          else
+            echo "folder owner exists"
           fi
           
           ls
@@ -82,10 +82,10 @@ jobs:
           cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
 
           if [ -f "${{steps.string.outputs.lowercase}}" ]; then
-            echo "folder ${{steps.string.outputs.lowercase}} exists"
-          else
             echo "Creating folder schema"
             mkdir ${{steps.string.outputs.lowercase}}
+          else
+            echo "folder ${{steps.string.outputs.lowercase}} exists"
           fi
 
           ls
