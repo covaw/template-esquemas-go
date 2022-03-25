@@ -80,7 +80,7 @@ jobs:
         run: |
           cd ./nuget
           git add .
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name covaw
+          git config user.email wcova@andreani.com
           git commit -am "File Replicated from Project A"
           git push
