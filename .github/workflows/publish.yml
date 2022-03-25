@@ -62,8 +62,8 @@ jobs:
           repository: covaw/template-nuget-go
           # token: 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
           # token: ${{ secrets.ARQUITECTURA_DEPLOY }}
-          # token: ${{ env.GITHUB_TOKEN }}
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ env.GITHUB_TOKEN }}
+          # token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           # known_hosts: ${{ secrets.KNOWN_HOSTs }}
           path: ./nuget
@@ -94,9 +94,8 @@ jobs:
       - name: Push Project B
         run: |
           cd ./nuget
-          git config user.name covaw
-          git config user.email wcova@andreani.com
-          git config user.password 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
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -am "Add Schema ${{env.EVENT}}"
           git push
