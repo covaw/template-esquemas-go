@@ -8,5 +8,5 @@ protocol EventsProtocol {
         string estadoDelPedido;
         long cuentaCorriente;
         string cuando;
-    }
+    } 
 }
