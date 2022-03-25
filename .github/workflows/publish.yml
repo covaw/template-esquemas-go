@@ -37,8 +37,9 @@ jobs:
       - name: ls
         run: ls
       - name: setting source
-        run: |
-          cd ./origin
+        run: cd origin
+      - name: ls
+        run: ls
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata ${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
       - name: Generate folder output
