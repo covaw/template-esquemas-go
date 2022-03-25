@@ -76,6 +76,8 @@ jobs:
           fi
       - name: ls nuget
         run: ls nuget/
+      - name: GIT STATUS
+        run: git status
       - name: Push Project B
         run: |
           cd ./nuget
