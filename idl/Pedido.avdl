@@ -7,7 +7,7 @@ protocol EventsProtocol {
         long codigoDeContratoInterno;
         string estadoDelPedido;
         long cuentaCorriente;
-        union { null, string }  cuando=null;
+        string cuando;
     } 
 
     record Pedido2{
