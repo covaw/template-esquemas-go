@@ -8,10 +8,10 @@ on:
 env:
   AVRO_VERSION: 1.11.0
   AVRO_MIRROR: https://apache.zero.com.ar/avro
-  GITHUB_REPOSITORY_OWNER: covaw
-  IDL_FOLDER: 'idl/' # archivo avdl remplace {Example}
-  EVENT: 'Pedido'
-  REPOSITORY_NUGET: 'template-nuget-go'
+  GITHUB_PROJECT_OWNER: covaw
+  PROJECT: 'Ordenes'
+  SOURCE_EVENTS_FILE_IDL: 'idl/Pedido.avdl' # archivo avdl remplace {Example}
+  REPOSITORY_NUGET: 'covaw/template-nuget-go'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -34,13 +34,13 @@ jobs:
       - name: Get Avro Tools
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
-        run: go get github.com/actgardner/gogen-avro/v10/cmd/...
+ Event
       - name: Generate Protocol
-        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.IDL_FOLDER}}${{env.EVENT}}.avdl avro/
+        run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.SOURCE_EVENTS_FILE_IDL}} avro/
       - name: Generate folder output
         run: mkdir avro/struct
       - name: Generate go struct
-        run: /home/runner/go/bin/gogen-avro avro/struct avro/${{env.EVENT}}.avsc
+        run: /home/runner/go/bin/gogen-avro --package=Events avro/struct avro/*.avsc
       - name: Show folder AVRO
         run: ls avro/
       - name: Show folder Schemas
@@ -52,60 +52,71 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-          repository: covaw/template-nuget-go
+          repository: ${{ env.REPOSITORY_NUGET }}
           token: ${{ env.GITHUB_TOKEN }}
           path: ./nuget
-      - id: string
-        uses: ASzc/change-string-case-action@v2
-        with:
-          string: ${{env.EVENT}}
       - name: Create folder
         run: |
           cd ./nuget
 
-          if [ -d "${{ env.GITHUB_REPOSITORY_OWNER }}" ]; then
+          if [ -d "${{ env.GITHUB_PROJECT_OWNER }}" ]; then
             echo "folder owner exists"
           else
             echo "Creating folder owner"
-            mkdir ${{ env.GITHUB_REPOSITORY_OWNER }}
+            mkdir ${{ env.GITHUB_PROJECT_OWNER }}
           fi
           
           ls
 
-          cd ${{ env.GITHUB_REPOSITORY_OWNER }}/
+          cd ${{ env.GITHUB_PROJECT_OWNER }}/
 
-          if [ -d "${{steps.string.outputs.lowercase}}" ]; then
-            echo "folder ${{steps.string.outputs.lowercase}} exists"
-            rm -r ${{steps.string.outputs.lowercase}}
-            mkdir ${{steps.string.outputs.lowercase}}
+          if [ -d "${{ env.PROJECT }}" ]; then
+            echo "folder ${{ env.PROJECT }} exists"
+            rm -r ${{ env.PROJECT }}
+            mkdir ${{ env.PROJECT }}
           else
-            echo "Creating folder schema"
-            mkdir ${{steps.string.outputs.lowercase}}
+            echo "Creating folder project"
+            mkdir ${{ env.PROJECT }}
           fi
+          
+          cd ${{ env.PROJECT }}/
 
+          mkdir Events
           ls
       - name: Copy/Create file
         run: |
-          EVENT=${{steps.string.outputs.lowercase}}
-          FILE=avro/struct/$EVENT.go
-          if [ -f "$FILE" ]; then
+          SOURCE=avro/struct/*.go
+          if [ -f $SOURCE ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/*.go ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT
+            cp -R avro/struct/*.go ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{ env.GITHUB_REPOSITORY_OWNER }}/$EVENT/*.go
+            touch ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events/*.go
           fi
       - name: Show folder Nuget
-        run: ls ./nuget/
-      - name: Pushes to Go Nuget
+        run:  ls ./nuget/
+      - name: build go 
+        run:  |
+          cd ./nuget/
+          if [ -f "go.mod" ]; then
+            rm go.sum
+            rm go.mod
+            go mod init github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod tidy
+          else 
+            go mod init github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod tidy
+          fi
+          ls
+      - name: Push to Go Nuget
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.ARQUITECTURA_DEPLOY }}
         with:
           source-directory: ./nuget/
-          destination-github-username: ${{ env.GITHUB_REPOSITORY_OWNER }}
+          destination-github-username: ${{ env.GITHUB_PROJECT_OWNER }}
           destination-repository-name: ${{ env.REPOSITORY_NUGET }}
           user-email: git-actions@github.com
-          commit-message: add schema ${{ env.EVENT }}
+          commit-message: add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}
           target-branch: main

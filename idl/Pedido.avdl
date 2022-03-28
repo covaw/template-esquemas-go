@@ -1,6 +1,16 @@
-@namespace("Andreani.Scheme.Onboarding")
+@namespace("Andreani.Scheme.Ordenes")
 protocol EventsProtocol {
     record Pedido{
+        string id;
+        int numeroDePedido;
+        string cicloDelPedido;
+        long codigoDeContratoInterno;
+        string estadoDelPedido;
+        long cuentaCorriente;
+        string cuando;
+    } 
+
+    record Pedido2{
         string id;
         int numeroDePedido;
         string cicloDelPedido;
