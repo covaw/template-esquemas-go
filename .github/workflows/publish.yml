@@ -51,7 +51,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
-          source_file: ''
+          source_file: 'readme.md'
           destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
           destination_branch_create: '${{ env.PROJECT }}'
           # destination_folder: 'test-dir'
