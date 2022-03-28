@@ -101,10 +101,10 @@ jobs:
           if [ -f "go.mod" ]; then
             rm go.sum
             rm go.mod
-            go mod init github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET }}
             go mod tidy
           else 
-            go mod init github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET }}
             go mod tidy
           fi
           ls
