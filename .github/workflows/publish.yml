@@ -46,6 +46,8 @@ jobs:
         run: ls avro/
       - name: Show folder Schemas
         run: ls avro/struct/
+      - name: Create File Readme.md
+        run: touch readme.md
       - name: Sync branch nuget
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
