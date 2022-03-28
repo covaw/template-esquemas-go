@@ -47,9 +47,7 @@ jobs:
       - name: Show folder Schemas
         run: ls avro/struct/
       - name: Sync branch Initial
-        id: existBranch
-        run: |
-          touch readme.md
+        run: touch readme.md
       # - name: Sync branch nuget
       #   uses: dmnemec/copy_file_to_another_repo_action@main
       #   env:
@@ -84,7 +82,7 @@ jobs:
           else
               echo 1
           fi
-      - name: Validate
+      - name: ValidateS
         if: steps.existBranch.outcome == '1'
         run: echo 'true'
       - name: Validate
