@@ -7,7 +7,7 @@ protocol EventsProtocol {
         long codigoDeContratoInterno;
         string estadoDelPedido;
         long cuentaCorriente;
-        string cuando;
+        union { null, string }  cuando=null;
     } 
 
     record Pedido2{
@@ -17,6 +17,6 @@ protocol EventsProtocol {
         long codigoDeContratoInterno;
         string estadoDelPedido;
         long cuentaCorriente;
-        string cuando;
+        union { null, string }  cuando=null;
     } 
 }
