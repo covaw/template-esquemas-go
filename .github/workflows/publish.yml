@@ -61,7 +61,7 @@ jobs:
         id: existBranch
         run: |
           cd ./nuget
-          branch=${{ env.PROJECT }}s
+          branch=${{ env.PROJECT }}
           existed_in_local=$(git ls-remote --heads origin ${branch})
           if [[ -z ${existed_in_local} ]]; then
               echo '::set-output name=validate::0'
@@ -71,7 +71,7 @@ jobs:
       - name: create README.md
         run: touch readme.md
       - name: Create branch in nuget
-        if: steps.existBranch.outputs.validate == 0
+        if: steps.existBranch.outputs.validate == 1
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

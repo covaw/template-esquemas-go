@@ -8,7 +8,7 @@ protocol EventsProtocol {
         string estadoDelPedido;
         long cuentaCorriente;
         string cuando;  
-    } 
+    }
 
     record Pedido2{
         string id;
