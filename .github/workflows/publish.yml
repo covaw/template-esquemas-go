@@ -74,6 +74,7 @@ jobs:
       - name: Branch validate
         id: existBranch
         run: |
+          cd ./nuget
           branch=${{ env.PROJECT }}
           existed_in_local=$(git branch --list ${branch})
 
