@@ -11,7 +11,8 @@ env:
   GITHUB_PROJECT_OWNER: covaw
   PROJECT: 'Ordenes'
   SOURCE_EVENTS_FILE_IDL: 'idl/Pedido.avdl' # archivo avdl remplace {Example}
-  REPOSITORY_NUGET: 'covaw/template-nuget-go'
+  REPOSITORY_NUGET_OWNER: 'covaw'
+  REPOSITORY_NUGET: 'template-nuget-go'
 jobs:
   gen-nuget:
     name: "Generate Libs"
@@ -52,7 +53,7 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-          repository: ${{ env.REPOSITORY_NUGET }}
+          repository: ${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
           token: ${{ env.GITHUB_TOKEN }}
           path: ./nuget
       - name: Create folder
@@ -101,10 +102,10 @@ jobs:
           if [ -f "go.mod" ]; then
             rm go.sum
             rm go.mod
-            go mod init github.com/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
             go mod tidy
           else 
-            go mod init github.com/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
             go mod tidy
           fi
           ls
@@ -115,6 +116,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
           source-directory: ./nuget/
+          destination-github-username: ${{ env.REPOSITORY_NUGET_OWNER }}
           destination-repository-name: ${{ env.REPOSITORY_NUGET }}
           user-email: git-actions@github.com
           commit-message: add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}
