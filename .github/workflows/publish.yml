@@ -111,7 +111,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
           source_file: './nuget/'
-          destination_repo: ${{ env.REPOSITORY_NUGET }}
+          destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
           destination_branch_create: '${{ env.PROJECT }}'
           # destination_folder: 'test-dir'
           user_email: 'git-actions@github.com'
