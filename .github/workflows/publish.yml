@@ -75,13 +75,15 @@ jobs:
         id: existBranch
         run: |
           cd ./nuget
-          branch=${{ env.PROJECT }}
+          branch=${{ env.PROJECT }}s
           existed_in_local=$(git ls-remote --heads origin ${branch})
           if [[ -z ${existed_in_local} ]]; then
               echo 0
           else
               echo 1
           fi
+      - name: output
+        run: echo steps.existBranch.outputs.value
       - name: ValidateS
         if: steps.existBranch.outputs.value == 1
         run: echo 'true'
