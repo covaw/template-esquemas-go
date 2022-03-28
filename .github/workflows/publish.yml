@@ -79,7 +79,7 @@ jobs:
           existed_in_local=$(git ls-remote --heads origin ${branch})
           OUTPUT=1
           if [[ -z ${existed_in_local} ]]; then
-              OUTPUT=0
+             $OUTPUT=0
           fi
       - name: ValidateS
         if: steps.existBranch.outputs.Output == 1
