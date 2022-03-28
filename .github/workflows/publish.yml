@@ -75,7 +75,7 @@ jobs:
         id: existBranch
         run: |
           cd ./nuget
-          branch=${{ env.PROJECT }}
+          branch=${{ env.PROJECT }}s
           existed_in_local=$(git ls-remote --heads origin ${branch})
 
           if [[ -z ${existed_in_local} ]]; then
