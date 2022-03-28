@@ -34,7 +34,6 @@ jobs:
       - name: Get Avro Tools
         run: wget --quiet ${{env.AVRO_MIRROR}}/avro-${{env.AVRO_VERSION}}/java/avro-tools-${{env.AVRO_VERSION}}.jar
       - name: Get gogen-avro Tools
- Event
       - name: Generate Protocol
         run: java -jar avro-tools-${{env.AVRO_VERSION}}.jar idl2schemata origin/${{env.SOURCE_EVENTS_FILE_IDL}} avro/
       - name: Generate folder output
