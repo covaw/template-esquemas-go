@@ -153,6 +153,7 @@ jobs:
           user_email: 'git-actions@github.com'
           user_name: 'git-actions'
           commit_message: 'add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}'
+          use_rsync: 'cp -R'
       # - name: Push to Go Nuget
       #   id: push_directory
       #   uses: cpina/github-action-push-to-another-repository@main
