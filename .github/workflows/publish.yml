@@ -86,8 +86,8 @@ jobs:
           ls
       - name: Copy/Create file
         run: |
-          SOURCE=avro/struct/*.go
-          if [ -f $SOURCE ]; then
+          SOURCE=avro/struct
+          if [ -z "$(ls -A $SOURCE)" ]; then
             echo "Copying $FILE"
             cp -R avro/struct/* ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events
           else 
