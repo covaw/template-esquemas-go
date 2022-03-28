@@ -112,7 +112,7 @@ jobs:
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.ARQUITECTURA_DEPLOY }}
+          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
           source-directory: ./nuget/
           destination-repository-name: ${{ env.REPOSITORY_NUGET }}
