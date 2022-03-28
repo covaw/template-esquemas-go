@@ -89,10 +89,10 @@ jobs:
           SOURCE=avro/struct/*.go
           if [ -f $SOURCE ]; then
             echo "Copying $FILE"
-            cp -R avro/struct/*.go ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events
+            cp -R avro/struct/* ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events
           else 
             echo "Creating $FILE"
-            touch ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events/*.go
+            touch ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events/*
           fi
       - name: Show folder Nuget
         run:  ls ./nuget/
