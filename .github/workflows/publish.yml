@@ -93,14 +93,14 @@ jobs:
         run:  ls ./nuget/
       - name: build go 
         run:  |
-          cd ./nuget/
+          cd ./nuget/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}/Events/
           if [ -f "go.mod" ]; then
             rm go.sum
             rm go.mod
-            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}
             go mod tidy
           else 
-            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
+            go mod init github.com/${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}/${{ env.GITHUB_PROJECT_OWNER }}/${{ env.PROJECT }}
             go mod tidy
           fi
           ls
