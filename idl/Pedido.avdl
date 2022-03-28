@@ -9,14 +9,4 @@ protocol EventsProtocol {
         long cuentaCorriente;
         string cuando;  
     }
-
-    record Pedido2{
-        string id;
-        int numeroDePedido;
-        string cicloDelPedido;
-        long codigoDeContratoInterno;
-        string estadoDelPedido;
-        long cuentaCorriente; 
-        union { null, string }  cuando=null;
-    } 
 }
