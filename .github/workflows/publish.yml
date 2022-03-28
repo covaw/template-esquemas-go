@@ -99,7 +99,7 @@ jobs:
         run: |
           cd ./nuget
 
-          if [ steps.existBranch.outputs.validate == 0 ]; then
+          if [ ${{ steps.existBranch.outputs.validate }} == 0 ]; then
             rm -r readme.md
           fi
 
