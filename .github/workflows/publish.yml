@@ -105,15 +105,26 @@ jobs:
             go mod tidy
           fi
           ls
-      - name: Push to Go Nuget
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Pushes test file
+        uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
-          source-directory: ./nuget/
-          destination-github-username: ${{ env.REPOSITORY_NUGET_OWNER }}
-          destination-repository-name: ${{ env.REPOSITORY_NUGET }}/${{ env.PROJECT }}
-          user-email: git-actions@github.com
-          commit-message: add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}
+          source_file: './nuget/'
+          destination_repo: ${{ env.REPOSITORY_NUGET }}/${{ env.PROJECT }}
+          # destination_folder: 'test-dir'
+          user_email: 'git-actions@github.com'
+          user_name: 'git-actions'
+          commit_message: 'add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}'
+      # - name: Push to Go Nuget
+      #   id: push_directory
+      #   uses: cpina/github-action-push-to-another-repository@main
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      #   with:
+      #     source-directory: ./nuget/
+      #     destination-github-username: ${{ env.REPOSITORY_NUGET_OWNER }}
+      #     destination-repository-name: ${{ env.REPOSITORY_NUGET }}/${{ env.PROJECT }}
+      #     user-email: git-actions@github.com
+      #     commit-message: add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}
           # target-branch: ${{ env.PROJECT }}
