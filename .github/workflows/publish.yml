@@ -67,16 +67,16 @@ jobs:
           else
               echo '::set-output name=validate::1'
           fi
-      # - name: create file readme
-      #   if: steps.existBranch.outputs.validate == 0
-      #   run: touch readme.md
+      - name: create file readme
+        if: steps.existBranch.outputs.validate == 0
+        run: touch readme.md
       - name: Create branch in nuget
         if: steps.existBranch.outputs.validate == 0
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
-          source_file: './nuget/README.md'
+          source_file: 'readme.md'
           destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
           destination_branch_create: '${{ env.GITHUB_PROJECT_OWNER }}-${{ env.PROJECT }}-Events'
           user_email: 'git-actions@github.com'
@@ -96,6 +96,9 @@ jobs:
       - name: Create folder
         run: |
           cd ./nuget
+
+          rm readme.md
+          
           if [ -d "${{ env.GITHUB_PROJECT_OWNER }}" ]; then
             echo "folder owner exists"
           else
