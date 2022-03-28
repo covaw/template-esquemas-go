@@ -60,7 +60,7 @@ jobs:
         id: existBranch
         run: |
           cd ./nuget
-          branch=${{ env.PROJECT }}
+          branch='${{ env.GITHUB_PROJECT_OWNER }}-${{ env.PROJECT }}-Events'
           existed_in_local=$(git ls-remote --heads origin ${branch})
           if [[ -z ${existed_in_local} ]]; then
               echo '::set-output name=validate::0'
