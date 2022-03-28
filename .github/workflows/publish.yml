@@ -71,7 +71,7 @@ jobs:
       - name: create README.md
         run: touch readme.md
       - name: Create branch in nuget
-        if: steps.existBranch.outputs.validate == 1
+        if: steps.existBranch.outputs.validate == 0
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
