@@ -50,7 +50,32 @@ jobs:
         id: existBranch
         run: |
           touch readme.md
-
+      # - name: Sync branch nuget
+      #   uses: dmnemec/copy_file_to_another_repo_action@main
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      #   with:
+      #     source_file: 'readme.md'
+      #     destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
+      #     destination_branch_create: '${{ env.PROJECT }}'
+      #     # destination_folder: 'test-dir'
+      #     user_email: 'git-actions@github.com'
+      #     user_name: 'git-actions'
+      #     commit_message: 'sync branch'
+      - name: Checkout Nuget go
+        uses: actions/checkout@v2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+          repository: ${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
+          # ref: ${{ env.Project }}
+          token: ${{ env.GITHUB_TOKEN }}
+          path: ./nuget
+      - name: Branch validate
+        id: existBranch
+        run: |
           branch=${{ env.PROJECT }}
           existed_in_local=$(git branch --list ${branch})
 
@@ -65,29 +90,6 @@ jobs:
       - name: Validate
         if: steps.existBranch.outcome == '0'
         run: echo 'false'
-      - name: Sync branch nuget
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        with:
-          source_file: 'readme.md'
-          destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
-          destination_branch_create: '${{ env.PROJECT }}'
-          # destination_folder: 'test-dir'
-          user_email: 'git-actions@github.com'
-          user_name: 'git-actions'
-          commit_message: 'sync branch'
-      - name: Checkout Nuget go
-        uses: actions/checkout@v2
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-          repository: ${{ env.REPOSITORY_NUGET_OWNER }}/${{ env.REPOSITORY_NUGET }}
-          ref: ${{ env.Project }}
-          token: ${{ env.GITHUB_TOKEN }}
-          path: ./nuget
       - name: Create folder
         run: |
           cd ./nuget
