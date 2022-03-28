@@ -77,15 +77,16 @@ jobs:
           cd ./nuget
           branch=${{ env.PROJECT }}
           existed_in_local=$(git ls-remote --heads origin ${branch})
-          OUTPUT=1
           if [[ -z ${existed_in_local} ]]; then
-             $OUTPUT=0
+              echo 0
+          else
+              echo 1
           fi
       - name: ValidateS
-        if: steps.existBranch.outputs.Output == 1
+        if: steps.existBranch.outputs.value == 1
         run: echo 'true'
       - name: Validate
-        if: steps.existBranch.outputs.Output == 0
+        if: steps.existBranch.outputs.value == 0
         run: echo 'false'
       - name: Create folder
         run: |
