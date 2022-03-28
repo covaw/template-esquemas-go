@@ -46,8 +46,25 @@ jobs:
         run: ls avro/
       - name: Show folder Schemas
         run: ls avro/struct/
-      - name: Create File Readme.md
-        run: touch readme.md
+      - name: Sync branch Initial
+        id: existBranch
+        run: |
+          touch readme.md
+
+          local branch=${{ env.PROJECT }}
+          local existed_in_local=$(git branch --list ${branch})
+
+          if [[ -z ${existed_in_local} ]]; then
+              echo 0
+          else
+              echo 1
+          fi
+      - name: Validate
+        if: steps.existBranch.outcome == '1'
+        run: echo 'true'
+      - name: Validate
+        if: steps.existBranch.outcome == '0'
+        run: echo 'false'
       - name: Sync branch nuget
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
@@ -55,7 +72,6 @@ jobs:
         with:
           source_file: 'readme.md'
           destination_repo: ${{ env.GITHUB_PROJECT_OWNER }}/${{ env.REPOSITORY_NUGET }}
-          destination_branch: '${{ env.PROJECT }}'
           destination_branch_create: '${{ env.PROJECT }}'
           # destination_folder: 'test-dir'
           user_email: 'git-actions@github.com'
