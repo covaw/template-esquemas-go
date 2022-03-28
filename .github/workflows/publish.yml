@@ -161,7 +161,7 @@ jobs:
         with:
           source-directory: ./nuget/
           destination-github-username: ${{ env.REPOSITORY_NUGET_OWNER }}
-          destination-repository-name: ${{ env.REPOSITORY_NUGET }}/${{ env.PROJECT }}
+          destination-repository-name: ${{ env.REPOSITORY_NUGET }}
           user-email: git-actions@github.com
           commit-message: add ${{ env.PROJECT }} schemas for ${{ env.GITHUB_PROJECT_OWNER }}
           target-branch: ${{ env.PROJECT }}
