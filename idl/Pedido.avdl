@@ -16,7 +16,7 @@ protocol EventsProtocol {
         string cicloDelPedido;
         long codigoDeContratoInterno;
         string estadoDelPedido;
-        long cuentaCorriente;
+        long cuentaCorriente; 
         union { null, string }  cuando=null;
     } 
 }
