@@ -51,8 +51,8 @@ jobs:
         run: |
           touch readme.md
 
-          local branch=${{ env.PROJECT }}
-          local existed_in_local=$(git branch --list ${branch})
+          branch=${{ env.PROJECT }}
+          existed_in_local=$(git branch --list ${branch})
 
           if [[ -z ${existed_in_local} ]]; then
               echo 0
