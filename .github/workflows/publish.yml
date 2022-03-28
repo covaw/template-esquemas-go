@@ -83,12 +83,12 @@ jobs:
               echo 1
           fi
       - name: output
-        run: echo steps.existBranch.outputs.value
+        run: echo ${{ steps.existBranch.outputs.value }}
       - name: ValidateS
-        if: steps.existBranch.outputs.value == 1
+        if: ${{ steps.existBranch.outputs.value }} == 1
         run: echo 'true'
       - name: Validate
-        if: steps.existBranch.outputs.value == 0
+        if: ${{ steps.existBranch.outputs.value }} == 0
         run: echo 'false'
       - name: Create folder
         run: |
